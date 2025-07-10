@@ -13,7 +13,7 @@ const LoginForm = ({ onLogin, setLanguage }) => {
 
   return (
     <div style={{ textAlign: 'center', marginTop: '100px' }}>
-      <h2>Welcome to Micro-Learning Platform</h2>
+      Welcome to Micro-Learning Platform
       <div>
         <label>Select your role: </label>
         <select onChange={(e) => setSelectedRole(e.target.value)} defaultValue="">

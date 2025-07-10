@@ -13,7 +13,7 @@ const LearnerDashboard = ({ lessons, completedLessons, markCompleted, language }
 
   return (
     <div>
-      <h2>{greetings[language] || "Hello Learner!"}
+      {greetings[language] || "Hello Learner!"}
 
       <section>
         <h3>📚 My Lessons</h3>
