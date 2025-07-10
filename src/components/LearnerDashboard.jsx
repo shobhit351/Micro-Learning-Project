@@ -43,27 +43,27 @@ const t = translations[language] || translations["English"];
 <section>
   <h3>{t.myLessons}</h3>
   {lessons.map(lesson => (
-    <Lessoncard key={lesson.id} lesson={lesson}>
+    <LessonCard key={lesson.id} lesson={lesson}>
       {!completedLessons.includes(lesson.id) && (
         <button onClick={() => markCompleted(lesson.id)}>{t.markCompleted}</button>
       )}
-    </Lessoncard>
+    </LessonCard>
   ))}
 </section>
 
 <section>
   <h3>{t.continue}</h3>
   {continueLessons.map(lesson => (
-    <Lessoncard key={lesson.id} lesson={lesson}>
+    <LessonCard key={lesson.id} lesson={lesson}>
       <button onClick={() => markCompleted(lesson.id)}>{t.markCompleted}</button>
-    </Lessoncard>
+    </LessonCard>
   ))}
 </section>
 
 <section>
   <h3>{t.completed}</h3>
   {completed.map(lesson => (
-    <Lessoncard key={lesson.id} lesson={lesson} />
+    <LessonCard key={lesson.id} lesson={lesson} />
   ))}
 </section>
 
