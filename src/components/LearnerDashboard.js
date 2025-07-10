@@ -1,5 +1,5 @@
 import React from 'react';
-import LessonCard from './LessonCard';
+import LessonCard from './Lessoncard';
 
 const LearnerDashboard = ({ lessons, completedLessons, markCompleted, language }) => {
   const greetings = {
@@ -13,7 +13,7 @@ const LearnerDashboard = ({ lessons, completedLessons, markCompleted, language }
 
   return (
     <div>
-      <h2>{greetings[language] || "Hello Learner!"}</h2>
+      <h2>{greetings[language] || "Hello Learner!"}
 
       <section>
         <h3>📚 My Lessons</h3>
