@@ -1,29 +1,16 @@
+// src/components/LessonCard.jsx
 import React from 'react';
 
-const LessonCard = ({ lesson, children }) => {
-  return (
-    <div style={{
-      border: '1px solid #ddd',
-      padding: '10px',
-      marginBottom: '10px',
-      borderRadius: '8px'
-    }}>
-      <h4>{lesson.title}</h4>
-      {lesson.type === 'text' ? (
-        <p>{lesson.content}</p>
-      ) : (
-        <iframe
-          width="300"
-          height="200"
-          src={lesson.content}
-          title={lesson.title}
-          frameBorder="0"
-          allowFullScreen
-        ></iframe>
-      )}
-      {children}
-    </div>
-  );
-};
+const LessonCard = ({ lesson, children }) => (
+  <div style={{ border: '1px solid gray', padding: '10px', margin: '10px 0' }}>
+    <h4>{lesson.title} ({lesson.type})</h4>
+    {lesson.type === 'video' ? (
+      <a href={lesson.content} target="_blank" rel="noopener noreferrer">{lesson.content}</a>
+    ) : (
+      <p>{lesson.content}</p>
+    )}
+    {children}
+  </div>
+);
 
 export default LessonCard;

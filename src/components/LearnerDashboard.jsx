@@ -1,73 +1,67 @@
+// src/components/LearnerDashboard.jsx
 import React from 'react';
-import LessonCard from './Lessoncard';
+import LessonCard from './LessonCard';
+import translations from '../utils/translations';
 
 const LearnerDashboard = ({ lessons, completedLessons, markCompleted, language }) => {
-  const greetings = {
-    English: "Hello Learner!",
-    Hindi: "नमस्ते विद्यार्थी!",
-    Telugu: "హలో విద్యార్థి!"
-  };
-  const translations = {
-  English: {
-    greeting: "Hello Learner!",
-    myLessons: "📚 My Lessons",
-    continue: "✅ Continue Learning",
-    completed: "🏅 Completed Lessons",
-    markCompleted: "Mark as Completed"
-  },
-  Hindi: {
-    greeting: "नमस्ते विद्यार्थी!",
-    myLessons: "📚 मेरे पाठ",
-    continue: "✅ सीखना जारी रखें",
-    completed: "🏅 पूर्ण किए गए पाठ",
-    markCompleted: "पूर्ण किया गया चिह्नित करें"
-  },
-  Telugu: {
-    greeting: "హలో విద్యార్థి!",
-    myLessons: "📚 నా పాఠాలు",
-    continue: "✅ కొనసాగించు అభ్యాసం",
-    completed: "🏅 పూర్తయిన పాఠాలు",
-    markCompleted: "పూర్తయినట్లు గుర్తించు"
-  }
-};
+  const t = translations[language];
 
-const t = translations[language] || translations["English"];
-
-  const continueLessons = lessons.filter(l => !completedLessons.includes(l.id));
-  const completed = lessons.filter(l => completedLessons.includes(l.id));
+  // Filter lessons
+  const incompleteLessons = lessons.filter(lesson => !completedLessons.includes(lesson.id));
+  const completedLessonList = lessons.filter(lesson => completedLessons.includes(lesson.id));
 
   return (
     <div>
-      <h2>{t.greeting}</h2>
+      {/* Greeting */}
+      <h2>{t.welcome}</h2>
 
-<section>
-  <h3>{t.myLessons}</h3>
-  {lessons.map(lesson => (
-    <LessonCard key={lesson.id} lesson={lesson}>
-      {!completedLessons.includes(lesson.id) && (
-        <button onClick={() => markCompleted(lesson.id)}>{t.markCompleted}</button>
-      )}
-    </LessonCard>
-  ))}
-</section>
+      {/* My Lessons */}
+      <section style={{ marginTop: '30px' }}>
+        <h3>📚 {t.myLessons}</h3>
+        {lessons.length === 0 ? (
+          <p>{t.noLessons}</p>
+        ) : (
+          lessons.map(lesson => (
+            <LessonCard key={lesson.id} lesson={lesson}>
+              {!completedLessons.includes(lesson.id) ? (
+                <button onClick={() => markCompleted(lesson.id)}>{t.markCompleted}</button>
+              ) : (
+                <span style={{ color: 'green', fontWeight: 'bold' }}>{t.completedLabel}</span>
+              )}
+            </LessonCard>
+          ))
+        )}
+      </section>
 
-<section>
-  <h3>{t.continue}</h3>
-  {continueLessons.map(lesson => (
-    <LessonCard key={lesson.id} lesson={lesson}>
-      <button onClick={() => markCompleted(lesson.id)}>{t.markCompleted}</button>
-    </LessonCard>
-  ))}
-</section>
+      {/* Continue Learning */}
+      <section style={{ marginTop: '30px' }}>
+        <h3>✅ {t.continue}</h3>
+        {incompleteLessons.length === 0 ? (
+          <p>🎉 {t.completed}</p>
+        ) : (
+          incompleteLessons.map(lesson => (
+            <LessonCard key={lesson.id} lesson={lesson}>
+              <button onClick={() => markCompleted(lesson.id)}>{t.markCompleted}</button>
+            </LessonCard>
+          ))
+        )}
+      </section>
 
-<section>
-  <h3>{t.completed}</h3>
-  {completed.map(lesson => (
-    <LessonCard key={lesson.id} lesson={lesson} />
-  ))}
-</section>
-
+      {/* Completed Lessons */}
+      <section style={{ marginTop: '30px' }}>
+        <h3>🏅 {t.completed}</h3>
+        {completedLessonList.length === 0 ? (
+          <p>{t.noLessons}</p>
+        ) : (
+          completedLessonList.map(lesson => (
+            <LessonCard key={lesson.id} lesson={lesson}>
+              <span style={{ color: 'green', fontWeight: 'bold' }}>{t.completedLabel}</span>
+            </LessonCard>
+          ))
+        )}
+      </section>
     </div>
   );
 };
 
+export default LearnerDashboard;
