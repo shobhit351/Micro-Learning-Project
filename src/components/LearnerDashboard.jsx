@@ -13,7 +13,8 @@ const LearnerDashboard = ({ lessons, completedLessons, markCompleted, language }
   return (
     <div>
       {/* Greeting */}
-      <h2>{t.welcome}</h2>
+      <h2>{t.welcome}, {name} 👋</h2>
+
 
       {/* My Lessons */}
       <section style={{ marginTop: '30px' }}>
