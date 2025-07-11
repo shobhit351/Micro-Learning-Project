@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LessonCard from './LessonCard';
+import LessonCard from './Lessoncard';
 
 const AdminDashboard = ({ lessons, addLesson, deleteLesson, t }) => {
   const [title, setTitle] = useState('');

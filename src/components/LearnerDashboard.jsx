@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LessonCard from './LessonCard';
+import LessonCard from './Lessoncard';
 
 const LearnerDashboard = ({ lessons, completedLessons, markCompleted, name, t }) => {
   const [searchTerm, setSearchTerm] = useState('');
