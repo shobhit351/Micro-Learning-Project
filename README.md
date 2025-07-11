@@ -21,7 +21,9 @@ Explain how to start the development server.
 ## Running Locally
 
 To start the development server with hot reload:
-use npm run dev
+use:-
+(npm install)
+ (npm run dev)
 then o to open it in browser 
 
 4. Folder Structure
